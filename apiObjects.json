@@ -1,0 +1,142 @@
+{
+    "dishes": [
+        {
+            "id": 1,
+            "name":"Neapolitan Pizza - small",
+            "price":7.3,
+            "categorie":1
+        },
+        {
+            "id": 2,
+            "name":"Neapolitan Pizza - medium",
+            "price":10.3,
+            "categorie":1
+        },
+        {
+            "id": 3,
+            "name":"Fugazzeta Pizza - small",
+            "price":7.5,
+            "categorie":1
+        },
+        {
+            "id": 4,
+            "name":"Fugazzeta Pizza - medium",
+            "price":10.8,
+            "categorie":1
+        },
+        {
+            "id": 5,
+            "name":"Classic Pizza - small",
+            "price":6.5,
+            "categorie":1
+        },
+        {
+            "id": 6,
+            "name":"Classic Pizza - medium",
+            "price":9.5,
+            "categorie":1
+        },
+        {
+            "id": 7,
+            "name":"Cheese Burger",
+            "price":5.5,
+            "categorie":1
+        },
+        {
+            "id": 8,
+            "name":"Veggie Burger",
+            "price":7,
+            "categorie":1
+        },
+        {
+            "id": 9,
+            "name":"Double bacon Burger",
+            "price":7.5,
+            "categorie":1
+        },
+        {
+            "id": 9,
+            "name":"Bacon cheddar Burger",
+            "price":8,
+            "categorie":1
+        },
+        {
+            "id": 10,
+            "name":"Bacon complete Burger",
+            "price":9.2,
+            "categorie":1
+        },
+        {
+            "id": 11,
+            "name":"Patagonia scotch beer",
+            "price":3.5,
+            "categorie":2
+        },
+        {
+            "id": 12,
+            "name":"Patagonia ipa beer",
+            "price":3.6,
+            "categorie":2
+        },
+        {
+            "id": 13,
+            "name":"Patagonia golden beer",
+            "price":3.5,
+            "categorie":2
+        },
+        {
+            "id": 14,
+            "name":"Stella Artois",
+            "price":3.0,
+            "categorie":2
+        },
+        {
+            "id": 15,
+            "name":"Miller - ipa -golden",
+            "price":3.2,
+            "categorie":2
+        },
+        {
+            "id": 16,
+            "name":"Water - soda drinks",
+            "price":2.6,
+            "categorie":2
+        },
+        {
+            "id": 17,
+            "name":"Coffe",
+            "price":2.3,
+            "categorie":3
+        },
+        {
+            "id": 18,
+            "name":"Muffin",
+            "price":2.7,
+            "categorie":3
+        },
+        {
+            "id": 19,
+            "name":"Gelatto",
+            "price":3.2,
+            "categorie":3
+        },
+        {
+            "id": 20,
+            "name":"Argentinian Flan",
+            "price":3.5,
+            "categorie":3
+        },
+        {
+            "id": 21,
+            "name":"Chocolate vulcano",
+            "price":3.3,
+            "categorie":3
+        },
+        {
+            "id": 21,
+            "name":"Suiss bonbon",
+            "price":3.8,
+            "categorie":3
+        }
+    ]
+}
