@@ -24,6 +24,22 @@ function validateBlank(table, hour) {
     } 
 }
 
+function printResponse(response, type) {
+    if(!document.querySelector('.invalid-feedback')){
+        const alert = document.createElement('div');
+        alert.classList.add('invalid-feedback','d-block','text-center');
+        alert.textContent= response;
+        document.querySelector('.modal-body form').appendChild(alert);
+
+        setTimeout(() => {
+            alert.remove();
+        },3000);
+        
+        return
+    }
+}
+
+
 function isBlank(str) {
     return (!str || /^\s*$/.test(str));
 }
