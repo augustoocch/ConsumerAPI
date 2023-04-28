@@ -48,8 +48,27 @@ function addClient(table, hour) {
     const modalBoots = bootstrap.Modal.getInstance(modalForm);
     modalBoots.hide();
 
+    showSections();
+    getDishes();
 }
 
+//Making visible hided divs
+function showSections() {
+    const hidedSections = document.querySelectorAll('.d-none');
+    hidedSections.forEach(section => {
+        section.classList.remove('d-none');
+    });
+}
+
+//Getting our API defined in json
+function getDishes() {
+    const url = 'http://localhost:4000/dishes';
+
+    fetch(url)
+        .then(response => response.json())
+        .then(r => console.log(r))
+        .catch(error => console.log(error))
+}
 
 function isBlank(str) {
     return (!str || /^\s*$/.test(str));
