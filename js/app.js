@@ -125,9 +125,24 @@ function showDishes(dishes) {
 }
 
 function addMeal(prod) {
-    //Check if qty > 0
+    //Check if qty > 0 to add the meal to the petition array
+    let{ petition } = clients
     if(prod.qty > 0) {
-        console.log(prod);
+        if(petition.some(article => article.id === prod.id)) {
+            //element already exist in array, update array
+            const updatedPetition = petition.map( article => {
+                if (article.id == prod.id) {
+                    article.qty = prod.qty;
+                }  
+                return article;
+            })
+            clients.petition = [...updatedPetition];
+        } else{ 
+            //element not existent in array            
+            clients.petition = [...petition, prod];
+
+        }
+        
     } else {
 
     }
