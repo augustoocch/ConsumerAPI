@@ -105,6 +105,11 @@ function showDishes(dishes) {
         inputQty.id = `product-${element.id}`;
         inputQty.classList.add('form-control');
 
+        inputQty.onchange = function (){
+            const qty = parseInt(inputQty.value);
+            addMeal({...element, qty});
+        }    
+
         const addInput = document.createElement('div');
         addInput.classList.add('col-md-2')
 
@@ -115,10 +120,18 @@ function showDishes(dishes) {
         row.appendChild(addInput);    
         content.appendChild(row);
 
-
-
     })
     
+}
+
+function addMeal(prod) {
+    //Check if qty > 0
+    if(prod.qty > 0) {
+        console.log(prod);
+    } else {
+
+    }
+
 }
 
 
