@@ -98,11 +98,27 @@ function showDishes(dishes) {
         categorie.classList.add('col-md-3');
         categorie.textContent = categorieEnv[ element.categorie ]
 
+        const inputQty = document.createElement('input');
+        inputQty.type = 'number';
+        inputQty.min = 0;
+        inputQty.value = 0;
+        inputQty.id = `product-${element.id}`;
+        inputQty.classList.add('form-control');
+
+        const addInput = document.createElement('div');
+        addInput.classList.add('col-md-2')
+
+        addInput.appendChild(inputQty);
         row.appendChild(name);
         row.appendChild(price);        
-        row.appendChild(categorie);        
+        row.appendChild(categorie);    
+        row.appendChild(addInput);    
         content.appendChild(row);
+
+
+
     })
+    
 }
 
 
