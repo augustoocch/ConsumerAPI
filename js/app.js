@@ -4,6 +4,15 @@ let clients = {
     petition: []
 }
 
+const categorieEnv = {
+    1: "Main dish",
+    2: "Drinks",
+    3: "Desserts"
+}
+
+
+
+
 const btnSave = document.querySelector('#guardar-cliente');
 btnSave.addEventListener('click',  saveClient);
 
@@ -75,17 +84,25 @@ function showDishes(dishes) {
 
     dishes.forEach(element => {
         const row = document.createElement('div');
-        row.classList.add('row');
+        row.classList.add('row', 'py-3', 'border-top');
 
         const name = document.createElement('div');
         name.classList.add('col-md-4');
         name.textContent = element.name;
 
+        const price = document.createElement('div');
+        price.classList.add('col-md-3', 'fw-bold');
+        price.textContent = `$${element.price}`;
+
+        const categorie = document.createElement('div');
+        categorie.classList.add('col-md-3');
+        categorie.textContent = categorieEnv[ element.categorie ]
+
         row.appendChild(name);
+        row.appendChild(price);        
+        row.appendChild(categorie);        
         content.appendChild(row);
-
     })
-
 }
 
 
