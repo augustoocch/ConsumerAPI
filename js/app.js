@@ -66,9 +66,29 @@ function getDishes() {
 
     fetch(url)
         .then(response => response.json())
-        .then(r => console.log(r))
+        .then(dishes => showDishes(dishes))
         .catch(error => console.log(error))
 }
+
+function showDishes(dishes) {
+    const content = document.querySelector('#dishes .content');
+
+    dishes.forEach(element => {
+        const row = document.createElement('div');
+        row.classList.add('row');
+
+        const name = document.createElement('div');
+        name.classList.add('col-md-4');
+        name.textContent = element.name;
+
+        row.appendChild(name);
+        content.appendChild(row);
+
+    })
+
+}
+
+
 
 function isBlank(str) {
     return (!str || /^\s*$/.test(str));
