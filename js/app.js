@@ -126,7 +126,7 @@ function showDishes(dishes) {
 
 function addMeal(prod) {
     //Check if qty > 0 to add the meal to the petition array
-    let{ petition } = clients
+    let{ petition } = clients;
     if(prod.qty > 0) {
         if(petition.some(article => article.id === prod.id)) {
             //element already exist in array, update array
@@ -139,49 +139,132 @@ function addMeal(prod) {
             clients.petition = [...updatedPetition];
             //This else, erases the elements that aren't set in the array
         } else{ 
-            const result = petition.filter(element => element.id !== element.id);  
-            clients.petition = [...result];
-
+            clients.petition = [...petition, prod];
         }
-    updateBrief();
     
+    } else{ 
+        const result = petition.filter(element => element.id !== element.id);  
+        clients.petition = [...result];
     }
+    cleanHtml();    
+    updateBrief();
 
 }
 
-//Adds the brief of the client petition with the info of the customer
+//Adds the brief of the client order with the info of the customer
 function updateBrief() {
 
     const content= document.querySelector('#brief .content');
 
     const brief = document.createElement('div');
-    brief.classList.add('col-md-6');
+    brief.classList.add('col-md-6', 'card', 'py-5', 'px-3', 'shadow');
 
+    //Adds the table data
     const table = document.createElement('p');
-    table.textContent = 'Table';
+    table.textContent = 'Table: ';
     table.classList.add('fw-bold');
 
     const tableSpan = document.createElement('span');
     tableSpan.textContent = clients.table;
     tableSpan.classList.add('fw-normal');
 
+    //Adds the hour data
     const hour = document.createElement('p');
-    hour.textContent = 'Hour';
+    hour.textContent = 'Hour: ';
     hour.classList.add('fw-bold');
 
     const hourSpan = document.createElement('span');
     hourSpan.textContent = clients.hour;
     hourSpan.classList.add('fw-normal');
 
+    //Title of the section
+    const title = document.createElement('h3');
+    title.textContent = "Client's order";
+    title.classList.add('my-6', 'text-center');
+
+    //Appends the client order after it returns the result
+    const orderGroup = updateOrderBrief();
+
     table.appendChild(tableSpan);
     hour.appendChild(hourSpan);
-    content.appendChild(table);
-    content.appendChild(hour);
+    brief.appendChild(table);
+    brief.appendChild(hour);
+    brief.appendChild(title);
+    brief.appendChild(orderGroup);
 
+    content.appendChild(brief);
+}
+
+//This function returns the brief of the client order in a list
+function updateOrderBrief() {
+    
+    const group = document.createElement('ul');
+    group.classList.add('list-group');
+
+    let { petition } = clients;
+
+    //Creates the element 
+    petition.forEach(element => {
+        const { name, qty, price, id} = element;
+        const list = document.createElement('li');
+        list.classList.add('list-group-item');
+
+        const nameArt = document.createElement('h4');
+        nameArt.classList.add('list-group-item');
+        nameArt.textContent = name;
+
+        const qtyArt = document.createElement('p');
+        qtyArt.classList.add('fw-bold');
+        qtyArt.textContent = 'Quantity: ';
+
+        const qtyVal = document.createElement('span');
+        qtyVal.classList.add('fw-normal');
+        qtyVal.textContent = qty;
+
+        const artPrice = document.createElement('p');
+        artPrice.classList.add('fw-bold');
+        artPrice.textContent = 'Price: ';
+
+        const artValue = document.createElement('span');
+        artValue.classList.add('fw-normal');
+        artValue.textContent = `$${price}`;
+
+        const subTot = document.createElement('p');
+        subTot.classList.add('fw-bold');
+        subTot.textContent = 'Sub total: ';
+
+        const subTotVal = document.createElement('span');
+        subTotVal.classList.add('fw-normal');
+        subTotVal.textContent = `$${price * qty}`;
+
+        qtyArt.appendChild(qtyVal);
+        artPrice.appendChild(artValue);
+        subTot.appendChild(subTotVal)
+
+        //Add values to the container
+        list.appendChild(nameArt);
+        list.appendChild(qtyArt);
+        list.appendChild(artPrice);
+        list.appendChild(subTot);        
+
+        //Add list to main group
+        group.appendChild(list);
+    })
+
+    return group;
 
 }
 
+//Clean the petition of the customer each time I update the request
+function cleanHtml() {
 
+    const content = document.querySelector('#brief .content');
+    
+    while(content.firstChild) {
+        content.removeChild(content.firstChild);
+    }
+
+}
 
 function isBlank(str) {
     return (!str || /^\s*$/.test(str));
