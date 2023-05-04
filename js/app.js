@@ -111,7 +111,7 @@ function showDishes(dishes) {
         }    
 
         const addInput = document.createElement('div');
-        addInput.classList.add('col-md-2')
+        addInput.classList.add('col-md-2');
 
         addInput.appendChild(inputQty);
         row.appendChild(name);
