@@ -137,15 +137,47 @@ function addMeal(prod) {
                 return article;
             })
             clients.petition = [...updatedPetition];
+            //This else, erases the elements that aren't set in the array
         } else{ 
-            //element not existent in array            
-            clients.petition = [...petition, prod];
+            const result = petition.filter(element => element.id !== element.id);  
+            clients.petition = [...result];
 
         }
-        
-    } else {
-
+    updateBrief();
+    
     }
+
+}
+
+//Adds the brief of the client petition with the info of the customer
+function updateBrief() {
+
+    const content= document.querySelector('#brief .content');
+
+    const brief = document.createElement('div');
+    brief.classList.add('col-md-6');
+
+    const table = document.createElement('p');
+    table.textContent = 'Table';
+    table.classList.add('fw-bold');
+
+    const tableSpan = document.createElement('span');
+    tableSpan.textContent = clients.table;
+    tableSpan.classList.add('fw-normal');
+
+    const hour = document.createElement('p');
+    hour.textContent = 'Hour';
+    hour.classList.add('fw-bold');
+
+    const hourSpan = document.createElement('span');
+    hourSpan.textContent = clients.hour;
+    hourSpan.classList.add('fw-normal');
+
+    table.appendChild(tableSpan);
+    hour.appendChild(hourSpan);
+    content.appendChild(table);
+    content.appendChild(hour);
+
 
 }
 
