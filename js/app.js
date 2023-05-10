@@ -163,7 +163,7 @@ function updateBrief() {
     const content= document.querySelector('#brief .content');
 
     const brief = document.createElement('div');
-    brief.classList.add('col-md-6', 'card', 'py-5', 'px-3', 'shadow');
+    brief.classList.add('col-md-6', 'card', 'py-3', 'px-3', 'shadow');
 
     //Adds the table data
     const table = document.createElement('p');
@@ -186,19 +186,22 @@ function updateBrief() {
     //Title of the section
     const title = document.createElement('h3');
     title.textContent = "Client's order";
-    title.classList.add('my-6', 'text-center');
+    title.classList.add('my-4', 'text-center');
 
     //Appends the client order after it returns the result
     const orderGroup = updateOrderBrief();
 
+    brief.appendChild(title);
     table.appendChild(tableSpan);
     hour.appendChild(hourSpan);
     brief.appendChild(table);
     brief.appendChild(hour);
-    brief.appendChild(title);
     brief.appendChild(orderGroup);
 
     content.appendChild(brief);
+
+    //Creates the tip form in the order
+    tipForm();
 }
 
 //This function returns the brief of the client order in a list
@@ -302,6 +305,25 @@ function emptyOrder() {
 
     content.appendChild(text);
 
+}
+
+function tipForm() {
+    console.log('hello');
+    const content = document.querySelector('#brief .content');
+
+    const form = document.createElement('div');
+    form.classList.add('col-md-6', 'form');
+
+    const divForm = document.createElement('div');
+    divForm.classList.add('card', 'shadow', 'py-2', 'px-3');
+
+    const heading = document.createElement('h3');
+    heading.classList.add('my-4', 'text-center');
+    heading.textContent = 'Tip';
+
+    divForm.appendChild(heading);
+    form.appendChild(divForm);
+    content.appendChild(form);
 }
 
 //Clean the petition of the customer each time I update the request
