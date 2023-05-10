@@ -366,6 +366,74 @@ function tipForm() {
     content.appendChild(form);
 }
 
+
+function calculateTip(){
+    const { petition } = clients;
+    let subTot = 0;
+
+    petition.forEach(element => {
+        subTot += element.qty * element.price;
+    });
+
+    const tipSelection = document.querySelector('[name="tip"]:checked').value;
+    const totalTip =((subTot * parseInt(tipSelection)) / 100 );
+    const total = subTot + totalTip;
+
+    showTotalHtml(subTot, total, totalTip);
+}
+
+
+function showTotalHtml(subTot, total, totalTip) {
+    
+    const divTotality = document.createElement('div');
+    divTotality.classList.add('total-pay');
+
+    // Subtotal
+    const subtotalP = document.createElement('P');
+    subtotalP.classList.add('fs-3', 'fw-bold', 'mt-5');
+    subtotalP.textContent = 'Subtotal consuming: ';
+
+    const subtotalSpan = document.createElement('span');
+    subtotalSpan.classList.add('fw-normal');
+    subtotalSpan.textContent = `$${subTot}`;
+    subtotalP.appendChild(subtotalSpan);
+
+    // Propina
+    const tipP = document.createElement('p');
+    tipP.classList.add('fs-3', 'fw-bold');
+    tipP.textContent = 'Tip: ';
+
+    const tipSpan = document.createElement('span');
+    tipSpan.classList.add('fw-normal');
+    tipSpan.textContent = `$${totalTip}`;
+    tipP.appendChild(tipSpan);
+
+    // Total
+    const totalP = document.createElement('p');
+    totalP.classList.add('fs-3', 'fw-bold');
+    totalP.textContent = 'Total to pay: ';
+
+    const totalSpan = document.createElement('span');
+    totalSpan.classList.add('fw-normal');
+    totalSpan.textContent = `$${total}`;
+
+    totalP.appendChild(totalSpan);
+
+    const totalPayDiv = document.querySelector('.total-pay');
+    if(totalPayDiv) {
+        totalPayDiv.remove();
+    }
+   
+
+
+    divTotality.appendChild(subtotalP);
+    divTotality.appendChild(tipP);
+    divTotality.appendChild(totalP);
+
+    const formulario = document.querySelector('.form');
+    formulario.appendChild(divTotality);
+}
+
 //Clean the petition of the customer each time I update the request
 function cleanHtml() {
 
