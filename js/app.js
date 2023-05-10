@@ -146,8 +146,14 @@ function addMeal(prod) {
         const result = petition.filter(element => element.id !== element.id);  
         clients.petition = [...result];
     }
-    cleanHtml();    
-    updateBrief();
+    cleanHtml();   
+    
+    //If the order is empty, then restarts and cleans the DOM
+    if( clients.petition.length ) {
+        updateBrief();
+    } else {
+        emptyOrder()
+    }
 
 }
 
@@ -237,6 +243,14 @@ function updateOrderBrief() {
         subTotVal.classList.add('fw-normal');
         subTotVal.textContent = `$${price * qty}`;
 
+        const buttnDel = document.createElement('button');
+        buttnDel.classList.add('btn', 'btn-danger');
+        buttnDel.textContent = 'Delete';
+
+        buttnDel.onclick = function() {
+            deleteProduct(id);
+        } 
+
         qtyArt.appendChild(qtyVal);
         artPrice.appendChild(artValue);
         subTot.appendChild(subTotVal)
@@ -245,13 +259,48 @@ function updateOrderBrief() {
         list.appendChild(nameArt);
         list.appendChild(qtyArt);
         list.appendChild(artPrice);
-        list.appendChild(subTot);        
+        list.appendChild(subTot);
+        list.appendChild(buttnDel);        
 
         //Add list to main group
         group.appendChild(list);
     })
 
     return group;
+
+}
+
+//Deletes the product of the order in the DOM
+function deleteProduct(id) {
+    console.log(id);
+    let{ petition } = clients;
+    const result = petition.filter(element => element.id !== id);  
+    clients.petition = [...result];
+
+    cleanHtml();   
+    
+    //If the order is empty, then restarts and cleans the DOM
+    if( clients.petition.length ) {
+        updateBrief();
+    } else {
+        emptyOrder()
+    }
+    
+    //Put form item in value = 0, after deletion
+    const productToZero = `#product-${id}`;
+    const inputDeletedProd = document.querySelector(productToZero);
+    inputDeletedProd.value = 0;
+}
+
+//Resets the DOM, when no order is set
+function emptyOrder() {
+    const content = document.querySelector('#brief .content');
+
+    const text = document.createElement('p');
+    text.classList.add('text-center');
+    text.textContent = "Add the client's order";
+
+    content.appendChild(text);
 
 }
 
