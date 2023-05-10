@@ -308,7 +308,7 @@ function emptyOrder() {
 }
 
 function tipForm() {
-    console.log('hello');
+
     const content = document.querySelector('#brief .content');
 
     const form = document.createElement('div');
@@ -321,7 +321,47 @@ function tipForm() {
     heading.classList.add('my-4', 'text-center');
     heading.textContent = 'Tip';
 
+    const radioBtn = document.createElement('input');
+    radioBtn.type = 'radio';
+    radioBtn.name = 'tip';
+    radioBtn.value = "10";
+    radioBtn.classList.add('form-check-input');
+    
+    const radioLabel = document.createElement('label');
+    radioLabel.textContent = '10%';
+    radioLabel.classList.add('form-check-label');
+
+    const radioDiv = document.createElement('div');
+    radioDiv.classList.add('form-check');
+    radioDiv.appendChild(radioBtn);
+    radioDiv.appendChild(radioLabel);
+
+    const radioBtn2 = document.createElement('input');
+    radioBtn2.type = 'radio';
+    radioBtn2.name = 'tip';
+    radioBtn2.value = "20";
+    radioBtn2.classList.add('form-check-input');
+    
+    const radioLabel2 = document.createElement('label');
+    radioLabel2.textContent = '20%';
+    radioLabel2.classList.add('form-check-label');
+
+    const radioDiv2 = document.createElement('div');
+    radioDiv2.classList.add('form-check');
+    radioDiv2.appendChild(radioBtn2);
+    radioDiv2.appendChild(radioLabel2);
+
+    radioBtn.onclick = function() {
+        calculateTip();
+    }
+
+    radioBtn2.onclick = function() {
+        calculateTip();
+    }
+
     divForm.appendChild(heading);
+    divForm.appendChild(radioDiv);
+    divForm.appendChild(radioDiv2);
     form.appendChild(divForm);
     content.appendChild(form);
 }
